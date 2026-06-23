@@ -193,69 +193,69 @@
         /* Responsive Navigation Styles */
         @media (max-width: 768px) {
             .menu-toggle {
-                display: flex;
+                display: none !important;
+            }
+
+            nav.nav-container {
+                flex-direction: column;
+                gap: 12px;
+                padding: 1rem 0.5rem 0.8rem;
+            }
+
+            .logo-section {
+                justify-content: center;
+                width: 100%;
             }
 
             .nav-menu-wrapper {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 300px;
-                height: 100vh;
-                background: rgba(255, 255, 255, 0.96);
-                backdrop-filter: blur(20px) saturate(180%);
-                -webkit-backdrop-filter: blur(20px) saturate(180%);
-                border-left: 1px solid rgba(0, 0, 0, 0.05);
-                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.05);
-                padding: 100px 30px 40px;
-                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                z-index: 1000;
-            }
-
-            header.mobile-open .nav-menu-wrapper {
-                right: 0;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                overflow: visible;
             }
 
             .nav-links-list {
-                flex-direction: column;
-                align-items: flex-start;
-                background: transparent;
-                border: none;
-                padding: 0;
-                gap: 20px;
-                width: 100%;
+                display: flex;
+                flex-direction: row;
+                gap: 2px;
+                padding: 4px;
+                background: rgba(0, 0, 0, 0.03);
+                border: 1px solid rgba(0, 0, 0, 0.04);
+                border-radius: 30px;
+                max-width: 96vw;
+                overflow-x: auto;
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+                -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nav-links-list::-webkit-scrollbar {
+                display: none; /* Hide scrollbar Chrome/Safari/Opera */
             }
 
             .nav-item {
-                width: 100%;
-                opacity: 0;
-                transform: translateX(20px);
-                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                position: relative;
+                z-index: 2;
             }
-
-            header.mobile-open .nav-item {
-                opacity: 1;
-                transform: translateX(0);
-            }
-
-            header.mobile-open .nav-item:nth-child(2) { transition-delay: 0.05s; }
-            header.mobile-open .nav-item:nth-child(3) { transition-delay: 0.1s; }
-            header.mobile-open .nav-item:nth-child(4) { transition-delay: 0.15s; }
-            header.mobile-open .nav-item:nth-child(5) { transition-delay: 0.2s; }
-            header.mobile-open .nav-item:nth-child(6) { transition-delay: 0.25s; }
 
             .nav-link {
-                font-size: 1.15rem;
-                padding: 10px 0;
-                width: 100%;
-                color: #1a1a1a;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-                border-radius: 0;
-                font-weight: 500;
+                font-size: 0.85rem;
+                padding: 6px 12px;
+                color: #555555;
+                border-radius: 20px;
+                border: none;
+                font-weight: 600;
+            }
+
+            .nav-item.active .nav-link {
+                color: #ff001e;
             }
 
             .active-indicator {
-                display: none;
+                display: block;
+                height: calc(100% - 8px);
+                border-radius: 20px;
+                top: 4px;
             }
         }
 
@@ -1095,19 +1095,30 @@
             const navItems = document.querySelectorAll('.nav-links-list .nav-item');
 
             const moveIndicatorTo = (item) => {
-                if (!item || window.innerWidth <= 768) {
+                if (!item) {
                     indicator.style.opacity = '0';
                     return;
                 }
                 const itemRect = item.getBoundingClientRect();
                 const listRect = list.getBoundingClientRect();
                 
-                const left = itemRect.left - listRect.left;
+                const left = itemRect.left - listRect.left + list.scrollLeft;
                 const width = itemRect.width;
                 
                 indicator.style.left = `${left}px`;
                 indicator.style.width = `${width}px`;
                 indicator.style.opacity = '1';
+
+                // Auto-center active item inside scrollable menu on mobile
+                if (window.innerWidth <= 768) {
+                    const listHalfWidth = listRect.width / 2;
+                    const itemHalfWidth = itemRect.width / 2;
+                    const scrollTarget = left - listHalfWidth + itemHalfWidth;
+                    list.scrollTo({
+                        left: scrollTarget,
+                        behavior: 'smooth'
+                    });
+                }
             };
 
             // Set initial position
