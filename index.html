@@ -18,17 +18,26 @@
             background: #ffffff;
         }
 
-        /* Header Navigation */
+        /* Premium Glassmorphic Header Navigation */
         header {
-            background: #ffffff;
-            padding: 0;
             position: fixed;
             width: 100%;
             top: 0;
+            left: 0;
             z-index: 1000;
-            border-bottom: 1px solid #e0e0e0;
-            animation: slideDown 0.6s ease-out;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Scrolled Header style */
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         @keyframes slideDown {
@@ -42,189 +51,212 @@
             }
         }
 
-        nav {
+        nav.nav-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0;
+            padding: 1.2rem clamp(1rem, 3vw, 2rem);
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        header.scrolled nav.nav-container {
+            padding: 0.8rem clamp(1rem, 3vw, 2rem);
         }
 
         .logo-section {
             display: flex;
             align-items: center;
-            gap: clamp(0.5rem, 2vw, 1rem);
-            padding: 1.5rem clamp(1rem, 3vw, 2rem);
-            border-right: 1px solid #e0e0e0;
-            min-width: 200px;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
-        .logo-section:hover {
-            background: rgba(26, 26, 26, 0.02);
+        .logo-link {
+            text-decoration: none;
+            display: inline-block;
         }
 
         .logo-text {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 900;
-    color: #000000;
-    letter-spacing: 0.5px;
-    margin-left: 0.5rem;
-}
-.logo-text .highlight {
-    color: #ff0000;
-    font-weight: 900;
-}
-
-.logo-icon {
-            width: clamp(120px, 15vw, 180px);
-            height: clamp(120px, 15vw, 180px);
-            object-fit: contain;
-            border-radius: 8px;
-            animation: iconBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
-        }
-
-        .logo-icon:hover {
-            transform: scale(1.1) rotateY(10deg);
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
-        }
-
-        @keyframes iconBounce {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .logo {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-size: clamp(1.4rem, 4vw, 1.8rem);
             font-weight: 900;
-            color: #1a1a1a;
-            letter-spacing: clamp(0.5px, 0.2vw, 1px);
-            animation: fadeInDown 0.6s ease-out 0.1s both;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            color: #061025;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
 
-        .logo:hover {
-            color: #0a0a0a;
-            transform: scale(1.02) translateY(-1px);
-            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        .logo-text .highlight {
+            color: #ff001e;
+            font-weight: 900;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .logo-link:hover .logo-text {
+            transform: scale(1.02);
+            text-shadow: 0 0 15px rgba(255, 0, 30, 0.15);
         }
 
-        .nav-section {
-            display: flex;
-            align-items: center;
-            flex: 1;
-            padding: 0 clamp(1rem, 3vw, 2rem);
-            justify-content: flex-end;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: clamp(2rem, 4vw, 3rem);
-            margin: 0;
-            padding: 0;
-        }
-
-        nav li {
-            list-style: none;
-        }
-
-        nav a {
-            color: #1a1a1a;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .nav-menu-wrapper {
             position: relative;
-            padding: 0.5rem 0;
         }
 
-        nav a::after {
-            content: '';
+        .nav-links-list {
+            display: flex;
+            list-style: none;
+            gap: 4px;
+            align-items: center;
+            position: relative;
+            background: rgba(0, 0, 0, 0.03);
+            padding: 6px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-item {
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 20px;
+            color: #555555;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: #ff001e;
+        }
+
+        .nav-item.active .nav-link {
+            color: #ff001e;
+        }
+
+        /* The sliding active indicator (glass pill) */
+        .active-indicator {
             position: absolute;
-            bottom: -8px;
+            height: calc(100% - 12px);
+            background: rgba(255, 0, 30, 0.08);
+            border: 1px solid rgba(255, 0, 30, 0.15);
+            border-radius: 30px;
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
             left: 0;
             width: 0;
-            height: 1px;
-            background: #1a1a1a;
-            transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            will-change: transform, width, left, opacity;
         }
 
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        nav a:hover {
-            opacity: 0.7;
-            transform: translateY(-2px);
-        }
-
-        /* Mobile Menu */
+        /* Mobile Menu Toggle button */
         .menu-toggle {
             display: none;
             flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 18px;
+            background: transparent;
+            border: none;
             cursor: pointer;
-            gap: 5px;
+            padding: 0;
+            z-index: 1001;
         }
 
         .menu-toggle span {
-            width: 25px;
+            width: 100%;
             height: 2px;
-            background: #1a1a1a;
-            transition: all 0.3s ease;
-            border-radius: 2px;
+            background-color: #061025;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: left center;
         }
 
         .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+            transform: rotate(45deg) translate(2px, 0px);
         }
 
         .menu-toggle.active span:nth-child(2) {
+            width: 0%;
             opacity: 0;
         }
 
         .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+            transform: rotate(-45deg) translate(2px, 0px);
         }
 
-        nav.mobile-open ul {
-            display: flex !important;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 1.5rem 2rem;
-            gap: 1rem;
-            animation: slideDown 0.3s ease-out;
-            margin-top: 0;
+        /* Responsive Navigation Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu-wrapper {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.96);
+                backdrop-filter: blur(20px) saturate(180%);
+                -webkit-backdrop-filter: blur(20px) saturate(180%);
+                border-left: 1px solid rgba(0, 0, 0, 0.05);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.05);
+                padding: 100px 30px 40px;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 1000;
+            }
+
+            header.mobile-open .nav-menu-wrapper {
+                right: 0;
+            }
+
+            .nav-links-list {
+                flex-direction: column;
+                align-items: flex-start;
+                background: transparent;
+                border: none;
+                padding: 0;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .nav-item {
+                width: 100%;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            header.mobile-open .nav-item {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            header.mobile-open .nav-item:nth-child(2) { transition-delay: 0.05s; }
+            header.mobile-open .nav-item:nth-child(3) { transition-delay: 0.1s; }
+            header.mobile-open .nav-item:nth-child(4) { transition-delay: 0.15s; }
+            header.mobile-open .nav-item:nth-child(5) { transition-delay: 0.2s; }
+            header.mobile-open .nav-item:nth-child(6) { transition-delay: 0.25s; }
+
+            .nav-link {
+                font-size: 1.15rem;
+                padding: 10px 0;
+                width: 100%;
+                color: #1a1a1a;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                border-radius: 0;
+                font-weight: 500;
+            }
+
+            .active-indicator {
+                display: none;
+            }
         }
 
         /* Hero Section */
@@ -753,84 +785,8 @@
 
         /* Mobile Devices (320px - 480px) */
         @media (max-width: 480px) {
-            nav {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 0;
-            }
-
-            .logo-section {
-                border-right: none;
-                border-bottom: 1px solid #e0e0e0;
-                padding: 1rem clamp(1rem, 3vw, 2rem);
-                min-width: auto;
-                justify-content: center;
-            }
-
-            .logo-icon {
-                width: 32px;
-                height: 32px;
-            }
-
-            .nav-section {
-                flex-direction: column;
-                padding: 0;
-                align-items: flex-end;
-            }
-
-            .nav-section ul {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                padding: 1.5rem 2rem;
-                gap: 1rem;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #ffffff;
-                border-bottom: 1px solid #e0e0e0;
-            }
-
-            .nav-section.mobile-open ul {
-                display: flex !important;
-            }
-
-            .menu-toggle {
-                display: flex;
-                padding: 1rem 1.5rem;
-            }
-            header {
-                padding: 1rem 0;
-            }
-
-            nav {
-                padding: 0 1rem;
-            }
-
-            .logo {
-                font-size: 1.4rem;
-                letter-spacing: 0.5px;
-            }
-
-            nav ul {
-                gap: 0;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            nav.mobile-open ul {
-                display: flex !important;
-            }
-
             .hero {
-                margin-top: 50px;
+                margin-top: 70px;
                 flex-direction: column;
                 justify-content: flex-start;
                 padding: 1.5rem 0 0 0;
@@ -894,10 +850,6 @@
 
         /* Tablet (481px - 768px) */
         @media (min-width: 481px) and (max-width: 768px) {
-            .nav-section ul {
-                gap: 1.5rem;
-            }
-
             .products {
                 padding: 3rem 1.5rem;
             }
@@ -922,24 +874,6 @@
 
         /* Desktop (769px and above) */
         @media (min-width: 769px) {
-            nav {
-                flex-direction: row;
-            }
-
-            .menu-toggle {
-                display: none;
-            }
-
-            .nav-section ul {
-                display: flex !important;
-                flex-direction: row;
-                position: static;
-                gap: clamp(2rem, 4vw, 3rem);
-                padding: 1.5rem 0;
-                border: none;
-                background: transparent;
-            }
-
             .products {
                 padding: 6rem 2rem;
             }
@@ -976,26 +910,30 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
-        <nav id="navbar">
-            <div class="logo-section"><span class="logo-text">Red<span class="highlight">bull</span></span>
-
-
+    <header id="mainHeader">
+        <nav class="nav-container">
+            <div class="logo-section">
+                <a href="#home" class="logo-link">
+                    <span class="logo-text">Red<span class="highlight">bull</span></span>
+                </a>
             </div>
-            <div class="nav-section">
-                <div class="menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact</a></li>
+            
+            <div class="nav-menu-wrapper">
+                <ul class="nav-links-list" id="navLinksList">
+                    <div class="active-indicator" id="activeIndicator"></div>
+                    <li class="nav-item active" data-section="home"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item" data-section="products"><a href="#products" class="nav-link">Products</a></li>
+                    <li class="nav-item" data-section="features"><a href="#features" class="nav-link">Features</a></li>
+                    <li class="nav-item" data-section="gallery"><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li class="nav-item" data-section="contact"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </div>
+            
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
@@ -1123,86 +1061,168 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navbar = document.getElementById('navbar');
-        const navSection = document.querySelector('.nav-section');
-        const navLinks = document.querySelectorAll('nav ul li a');
-
-        menuToggle.addEventListener('click', function () {
-            menuToggle.classList.toggle('active');
-            navSection.classList.toggle('mobile-open');
-        });
-
-        // Close mobile menu when link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', function () {
-                menuToggle.classList.remove('active');
-                navSection.classList.remove('mobile-open');
-            });
-        });
-
-        // Close mobile menu when scrolling
-        window.addEventListener('scroll', function () {
-            if (navSection.classList.contains('mobile-open')) {
-                menuToggle.classList.remove('active');
-                navSection.classList.remove('mobile-open');
-            }
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+        document.addEventListener('DOMContentLoaded', () => {
+            // Header scroll effect
+            const header = document.getElementById('mainHeader');
+            const handleScroll = () => {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
-            });
-        });
+            };
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Initial check
 
-        // Scroll animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Observe product cards and feature cards
-        document.querySelectorAll('.product-card, .feature-card, .gallery-item, .section-title').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Button click effect
-        document.querySelector('.cta-button').addEventListener('click', function () {
-            alert('Welcome to Red Bull! Your journey to energy greatness starts here! 🚀');
-        });
-
-        // Interactive gallery
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', function () {
-                console.log('Gallery item clicked!');
-            });
-        });
-
-        // Responsive adjustments on window resize
-        let resizeTimer;
-        window.addEventListener('resize', function () {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function () {
-                if (window.innerWidth > 768) {
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menuToggle');
+            menuToggle.addEventListener('click', () => {
+                const isOpen = header.classList.contains('mobile-open');
+                if (isOpen) {
+                    header.classList.remove('mobile-open');
                     menuToggle.classList.remove('active');
-                    navbar.classList.remove('mobile-open');
+                    document.body.style.overflow = '';
+                } else {
+                    header.classList.add('mobile-open');
+                    menuToggle.classList.add('active');
+                    document.body.style.overflow = 'hidden';
                 }
-            }, 250);
+            });
+
+            // Sliding active indicator pill
+            const list = document.getElementById('navLinksList');
+            const indicator = document.getElementById('activeIndicator');
+            const navItems = document.querySelectorAll('.nav-links-list .nav-item');
+
+            const moveIndicatorTo = (item) => {
+                if (!item || window.innerWidth <= 768) {
+                    indicator.style.opacity = '0';
+                    return;
+                }
+                const itemRect = item.getBoundingClientRect();
+                const listRect = list.getBoundingClientRect();
+                
+                const left = itemRect.left - listRect.left;
+                const width = itemRect.width;
+                
+                indicator.style.left = `${left}px`;
+                indicator.style.width = `${width}px`;
+                indicator.style.opacity = '1';
+            };
+
+            // Set initial position
+            setTimeout(() => {
+                const initialActive = document.querySelector('.nav-links-list .nav-item.active');
+                moveIndicatorTo(initialActive);
+            }, 100);
+
+            // Hover effects
+            navItems.forEach(item => {
+                item.addEventListener('mouseenter', () => moveIndicatorTo(item));
+                item.addEventListener('mouseleave', () => {
+                    const activeItem = document.querySelector('.nav-links-list .nav-item.active');
+                    moveIndicatorTo(activeItem);
+                });
+            });
+
+            // Handle window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    const activeItem = document.querySelector('.nav-links-list .nav-item.active');
+                    moveIndicatorTo(activeItem);
+                    if (window.innerWidth > 768) {
+                        header.classList.remove('mobile-open');
+                        menuToggle.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                }, 100);
+            });
+
+            // Smooth Scroll on Nav click with offset
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Close mobile menu
+                    header.classList.remove('mobile-open');
+                    menuToggle.classList.remove('active');
+                    document.body.style.overflow = '';
+
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        const headerOffset = window.innerWidth <= 768 ? 60 : 80;
+                        const elementPosition = targetSection.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll Active Tracking (Intersection Observer)
+            const sections = document.querySelectorAll('section[id], footer[id]');
+            const sectionObserverOptions = {
+                root: null,
+                rootMargin: '-25% 0px -55% 0px',
+                threshold: 0
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.getAttribute('id');
+                        const matchingNavItem = document.querySelector(`.nav-links-list .nav-item[data-section="${sectionId}"]`);
+                        if (matchingNavItem) {
+                            navItems.forEach(item => item.classList.remove('active'));
+                            matchingNavItem.classList.add('active');
+                            moveIndicatorTo(matchingNavItem);
+                        }
+                    }
+                });
+            }, sectionObserverOptions);
+
+            sections.forEach(section => sectionObserver.observe(section));
+
+            // Section entry scroll animations
+            const entryObserverOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const entryObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        entryObserver.unobserve(entry.target);
+                    }
+                });
+            }, entryObserverOptions);
+
+            document.querySelectorAll('.product-card, .feature-card, .gallery-item, .section-title').forEach(el => {
+                entryObserver.observe(el);
+            });
+
+            // Button click effect
+            const ctaButton = document.querySelector('.cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', () => {
+                    alert('Welcome to Red Bull! Your journey to energy greatness starts here! 🚀');
+                });
+            }
+
+            // Interactive gallery items
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    console.log('Gallery item clicked!');
+                });
+            });
         });
     </script>
 </body>
