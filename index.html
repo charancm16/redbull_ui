@@ -4,7 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Red Bull - Energy Beyond Limits</title>
+    <link rel="icon" type="image/png" href="Images/iconn.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                scroll-padding-top: 60px;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,7 +27,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             color: #1a1a1a;
             overflow-x: hidden;
             background: #ffffff;
@@ -29,7 +44,7 @@
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -77,23 +92,19 @@
             display: inline-block;
         }
 
-        .logo-text {
-            font-size: clamp(1.4rem, 4vw, 1.8rem);
-            font-weight: 900;
-            color: #061025;
-            letter-spacing: -0.5px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
+        .logo-img {
+            height: clamp(32px, 4.5vw, 42px);
+            width: auto;
+            display: block;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .logo-text .highlight {
-            color: #ff001e;
-            font-weight: 900;
+        .logo-link:hover .logo-img {
+            transform: scale(1.05);
         }
 
-        .logo-link:hover .logo-text {
-            transform: scale(1.02);
-            text-shadow: 0 0 15px rgba(255, 0, 30, 0.15);
+        header.scrolled .logo-img {
+            height: clamp(28px, 4vw, 36px);
         }
 
         .nav-menu-wrapper {
@@ -145,7 +156,7 @@
             background: rgba(255, 0, 30, 0.08);
             border: 1px solid rgba(255, 0, 30, 0.15);
             border-radius: 30px;
-            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1;
             pointer-events: none;
             opacity: 0;
@@ -329,8 +340,9 @@
         }
 
         .hero h1 {
+            font-family: 'Outfit', sans-serif;
             font-size: clamp(2rem, 8vw, 5rem);
-            font-weight: 300;
+            font-weight: 900;
             margin-bottom: clamp(0.5rem, 1vw, 1rem);
             letter-spacing: clamp(1px, 0.5vw, 3px);
             animation: scaleIn 1s ease-out 0.1s both;
@@ -407,6 +419,7 @@
             position: relative;
             width: 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 5;
@@ -415,11 +428,83 @@
 
         .hero-image-wrapper {
             position: relative;
-            width: 80%;
-            max-width: 600px;
+            width: 45%;
+            max-width: 280px;
             height: auto;
             animation: imageZoomIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
             filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.15));
+        }
+
+        .hero-click-btn {
+            font-family: 'Outfit', sans-serif;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            --primary-color: #1a1a1a;
+            --hovered-color: #ff001e;
+            position: relative;
+            display: flex;
+            font-weight: 700;
+            font-size: 20px;
+            gap: 0.5rem;
+            align-items: center;
+            margin-top: 24px;
+            text-decoration: none;
+            outline: none;
+            z-index: 10;
+        }
+
+        .hero-click-btn p {
+            margin: 0;
+            position: relative;
+            font-size: 20px;
+            color: var(--primary-color);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+        }
+
+        .hero-click-btn::after {
+            position: absolute;
+            content: "";
+            width: 0;
+            left: 0;
+            bottom: -7px;
+            background: var(--hovered-color);
+            height: 2px;
+            transition: 0.3s ease-out;
+        }
+
+        .hero-click-btn p::before {
+            position: absolute;
+            content: "Swipe";
+            width: 0%;
+            inset: 0;
+            color: var(--hovered-color);
+            overflow: hidden;
+            transition: 0.3s ease-out;
+        }
+
+        .hero-click-btn:hover::after {
+            width: 100%;
+        }
+
+        .hero-click-btn:hover p::before {
+            width: 100%;
+        }
+
+        .hero-click-btn:hover svg {
+            transform: translateX(4px);
+            color: var(--hovered-color);
+        }
+
+        .hero-click-btn svg {
+            color: var(--primary-color);
+            transition: 0.2s;
+            position: relative;
+            width: 15px;
+            transition-delay: 0.2s;
         }
 
         @keyframes imageZoomIn {
@@ -463,10 +548,7 @@
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .hero-image-wrapper:hover img {
-            filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.25));
-            transform: scale(1.05);
-        }
+
 
         .products {
             padding: clamp(2rem, 5vw, 6rem) clamp(1rem, 3vw, 2rem);
@@ -476,13 +558,14 @@
         }
 
         .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
             text-align: center;
             font-size: clamp(1.8rem, 6vw, 3rem);
             margin-bottom: clamp(2rem, 4vw, 4rem);
             color: #1a1a1a;
             position: relative;
             animation: fadeInUp 1s ease-out;
-            font-weight: 300;
             letter-spacing: clamp(1px, 0.3vw, 2px);
         }
 
@@ -794,8 +877,8 @@
             }
 
             .hero-image-wrapper {
-                width: 90%;
-                max-width: none;
+                width: 55%;
+                max-width: 200px;
             }
 
             .hero-content {
@@ -863,8 +946,8 @@
             }
 
             .hero-image-wrapper {
-                width: 85%;
-                max-width: 500px;
+                width: 50%;
+                max-width: 240px;
             }
 
             .products-grid {
@@ -914,7 +997,7 @@
         <nav class="nav-container">
             <div class="logo-section">
                 <a href="#home" class="logo-link">
-                    <span class="logo-text">Red<span class="highlight">bull</span></span>
+                    <img src="Images/iconn.png" alt="Red Bull Logo" class="logo-img" />
                 </a>
             </div>
             
@@ -941,8 +1024,25 @@
     <section class="hero" id="home">
         <div class="hero-image-container">
             <div class="hero-image-wrapper">
-                <img src="Images/mainlead.png" alt="Red Bull" />
+                <img src="Images/imgg.png" alt="Red Bull" />
             </div>
+            <button class="hero-click-btn">
+                <p>Swipe</p>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="4"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    ></path>
+                </svg>
+            </button>
         </div>
         <div class="hero-content">
             <h1>WINGS YOU CAN TRUST</h1>
@@ -1062,16 +1162,23 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Header scroll effect
+            // Header scroll effect - throttled with requestAnimationFrame
             const header = document.getElementById('mainHeader');
+            let scrollTick = false;
             const handleScroll = () => {
-                if (window.scrollY > 20) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
+                if (!scrollTick) {
+                    window.requestAnimationFrame(() => {
+                        if (window.scrollY > 20) {
+                            header.classList.add('scrolled');
+                        } else {
+                            header.classList.remove('scrolled');
+                        }
+                        scrollTick = false;
+                    });
+                    scrollTick = true;
                 }
             };
-            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('scroll', handleScroll, { passive: true });
             handleScroll(); // Initial check
 
             // Mobile Menu Toggle
@@ -1121,11 +1228,11 @@
                 }
             };
 
-            // Set initial position
-            setTimeout(() => {
+            // Set initial position instantly using requestAnimationFrame
+            window.requestAnimationFrame(() => {
                 const initialActive = document.querySelector('.nav-links-list .nav-item.active');
                 moveIndicatorTo(initialActive);
-            }, 100);
+            });
 
             // Hover effects
             navItems.forEach(item => {
@@ -1136,22 +1243,26 @@
                 });
             });
 
-            // Handle window resize
-            let resizeTimer;
+            // Handle window resize smoothly using requestAnimationFrame
+            let resizeTick = false;
             window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => {
-                    const activeItem = document.querySelector('.nav-links-list .nav-item.active');
-                    moveIndicatorTo(activeItem);
-                    if (window.innerWidth > 768) {
-                        header.classList.remove('mobile-open');
-                        menuToggle.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }
-                }, 100);
-            });
+                if (!resizeTick) {
+                    window.requestAnimationFrame(() => {
+                        const activeItem = document.querySelector('.nav-links-list .nav-item.active');
+                        moveIndicatorTo(activeItem);
+                        if (window.innerWidth > 768) {
+                            header.classList.remove('mobile-open');
+                            menuToggle.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                        scrollTick = false;
+                        resizeTick = false;
+                    });
+                    resizeTick = true;
+                }
+            }, { passive: true });
 
-            // Smooth Scroll on Nav click with offset
+            // Smooth Scroll on Nav click using native smooth scroll padding
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -1165,14 +1276,7 @@
                     const targetId = link.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
                     if (targetSection) {
-                        const headerOffset = window.innerWidth <= 768 ? 60 : 80;
-                        const elementPosition = targetSection.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                        
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
                     }
                 });
             });
@@ -1225,6 +1329,17 @@
             if (ctaButton) {
                 ctaButton.addEventListener('click', () => {
                     alert('Welcome to Red Bull! Your journey to energy greatness starts here! 🚀');
+                });
+            }
+
+            // Interactive Click button effect using native scroll
+            const clickBtn = document.querySelector('.hero-click-btn');
+            if (clickBtn) {
+                clickBtn.addEventListener('click', () => {
+                    const productsSection = document.getElementById('products');
+                    if (productsSection) {
+                        productsSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
             }
 
