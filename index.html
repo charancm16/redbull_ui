@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link rel="icon" type="image/png" href="Images/iconn.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
     <style>
         html {
             scroll-behavior: smooth;
@@ -60,6 +63,7 @@
                 transform: translateY(-100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -123,7 +127,7 @@
             padding: 6px;
             border-radius: 40px;
             border: 1px solid rgba(0, 0, 0, 0.05);
-            box-shadow: 
+            box-shadow:
                 0 4px 20px rgba(0, 0, 0, 0.02),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
@@ -248,13 +252,16 @@
                 border-radius: 30px;
                 max-width: 96vw;
                 overflow-x: auto;
-                scrollbar-width: none; /* Hide scrollbar Firefox */
-                -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+                scrollbar-width: none;
+                /* Hide scrollbar Firefox */
+                -ms-overflow-style: none;
+                /* Hide scrollbar IE/Edge */
                 -webkit-overflow-scrolling: touch;
             }
 
             .nav-links-list::-webkit-scrollbar {
-                display: none; /* Hide scrollbar Chrome/Safari/Opera */
+                display: none;
+                /* Hide scrollbar Chrome/Safari/Opera */
             }
 
             .nav-item {
@@ -321,9 +328,12 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px) translateX(0px);
             }
+
             50% {
                 transform: translateY(-30px) translateX(20px);
             }
@@ -345,6 +355,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -366,6 +377,7 @@
                 opacity: 0;
                 transform: scale(0.95);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -495,6 +507,7 @@
                 opacity: 0;
                 transform: scale(0.95) translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1) translateY(0);
@@ -524,6 +537,7 @@
                 opacity: 1;
                 filter: brightness(1);
             }
+
             100% {
                 transform: translate3d(180px, 0, -350px) rotateY(-90deg) scale(0.65);
                 opacity: 0;
@@ -537,6 +551,7 @@
                 opacity: 0;
                 filter: brightness(0.6);
             }
+
             100% {
                 transform: translate3d(0, 0, 0) rotateY(0deg) scale(1);
                 opacity: 1;
@@ -563,6 +578,12 @@
             position: relative;
             animation: fadeInUp 1s ease-out;
             letter-spacing: clamp(1px, 0.3vw, 2px);
+        }
+
+        .section-title.no-anim {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
         }
 
         .section-title::after {
@@ -768,53 +789,26 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             padding: 2.5rem 2rem;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
             position: relative;
-            opacity: 0;
-            transform: scale(0.95) translateY(20px);
-            will-change: transform, opacity;
-        }
-
-        .feature-card.visible {
             opacity: 1;
-            transform: scale(1) translateY(0);
-        }
-
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.9) !important;
-            border-color: #1a1a1a;
-            transform: scale(1.03) translateY(-8px) !important;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            transform: none;
         }
 
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            display: inline-block;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            will-change: transform;
         }
 
-        .feature-card:hover .feature-icon {
-            transform: scale(1.25) rotate(12deg);
-        }
+        @keyframes bounce {
 
-        /* Custom dynamic brand underglow for feature cards on hover */
-        .feature-card:nth-child(1):hover {
-            border-color: rgba(250, 204, 21, 0.45) !important;
-            box-shadow: 0 20px 45px rgba(250, 204, 21, 0.12), 0 0 20px rgba(250, 204, 21, 0.04) !important;
-        }
-        .feature-card:nth-child(2):hover {
-            border-color: rgba(239, 68, 68, 0.45) !important;
-            box-shadow: 0 20px 45px rgba(239, 68, 68, 0.12), 0 0 20px rgba(239, 68, 68, 0.04) !important;
-        }
-        .feature-card:nth-child(3):hover {
-            border-color: rgba(59, 130, 246, 0.45) !important;
-            box-shadow: 0 20px 45px rgba(59, 130, 246, 0.12), 0 0 20px rgba(59, 130, 246, 0.04) !important;
-        }
-        .feature-card:nth-child(4):hover {
-            border-color: rgba(168, 85, 247, 0.45) !important;
-            box-shadow: 0 20px 45px rgba(168, 85, 247, 0.12), 0 0 20px rgba(168, 85, 247, 0.04) !important;
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
         }
 
         .feature-title {
@@ -899,26 +893,26 @@
         }
 
         /* Hover Shine Reflection Sweep Effect */
-        .product-card::before, .feature-card::before, .gallery-item::before {
+        .product-card::before,
+        .gallery-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: -150%;
             width: 50%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.35),
-                transparent
-            );
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.35),
+                    transparent);
             transform: skewX(-25deg);
             z-index: 5;
             pointer-events: none;
             transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .product-card:hover::before, .feature-card:hover::before, .gallery-item:hover::before {
+        .product-card:hover::before,
+        .gallery-item:hover::before {
             left: 150%;
         }
 
@@ -1103,6 +1097,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header id="mainHeader">
@@ -1112,7 +1107,7 @@
                     <img src="Images/iconn.png" alt="Red Bull Logo" class="logo-img" />
                 </a>
             </div>
-            
+
             <div class="nav-menu-wrapper">
                 <ul class="nav-links-list" id="navLinksList">
                     <div class="active-indicator" id="activeIndicator"></div>
@@ -1123,7 +1118,7 @@
                     <li class="nav-item" data-section="contact"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </div>
-            
+
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
@@ -1140,19 +1135,9 @@
                 <img src="" alt="Red Bull" />
             </div>
             <button class="hero-click-btn" aria-label="Next Flavor">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="4"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    ></path>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
             </button>
         </div>
@@ -1379,7 +1364,7 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="features-container">
-            <h2 class="section-title">Why Choose Red Bull</h2>
+            <h2 class="section-title no-anim">Why Choose Red Bull</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
@@ -1500,10 +1485,10 @@
                 }
                 const itemRect = item.getBoundingClientRect();
                 const listRect = list.getBoundingClientRect();
-                
+
                 const left = itemRect.left - listRect.left + list.scrollLeft;
                 const width = itemRect.width;
-                
+
                 indicator.style.left = `${left}px`;
                 indicator.style.width = `${width}px`;
                 indicator.style.opacity = '1';
@@ -1559,7 +1544,7 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
+
                     // Close mobile menu
                     header.classList.remove('mobile-open');
                     menuToggle.classList.remove('active');
@@ -1614,7 +1599,7 @@
                 });
             }, entryObserverOptions);
 
-            document.querySelectorAll('.product-card, .feature-card, .gallery-item, .section-title').forEach(el => {
+            document.querySelectorAll('.product-card, .gallery-item, .section-title:not(.no-anim)').forEach(el => {
                 entryObserver.observe(el);
             });
 
@@ -1638,43 +1623,43 @@
                 'Images/Flovers/pink.png',
                 'Images/imgg.png'
             ];
-            
+
             let currentImageIndex = -1; // -1 represents the default Images/imgg.png
-            
+
             const img1 = document.querySelector('.hero-image-wrapper img:nth-child(1)');
             const img2 = document.querySelector('.hero-image-wrapper img:nth-child(2)');
             let isImg1Active = true;
-            
+
             // Preload flover images in memory to prevent loading flashes and flickering
             floverImages.forEach(src => {
                 const img = new Image();
                 img.src = src;
             });
-            
+
             const showNextImage = () => {
                 if (!img1 || !img2) return;
-                
+
                 const activeImg = isImg1Active ? img1 : img2;
                 const incomingImg = isImg1Active ? img2 : img1;
-                
+
                 // Calculate next index
                 currentImageIndex = (currentImageIndex + 1) % floverImages.length;
-                
+
                 // Load the next image src onto the incoming element
                 incomingImg.src = floverImages[currentImageIndex];
-                
+
                 // Clear any running animations to allow restarts
                 activeImg.style.animation = 'none';
                 incomingImg.style.animation = 'none';
-                
+
                 // Trigger reflow to restart CSS animations
                 activeImg.offsetHeight;
                 incomingImg.offsetHeight;
-                
+
                 // Apply the simultaneous 3D spin keyframe animations (450ms duration)
                 activeImg.style.animation = 'spinOut 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards';
                 incomingImg.style.animation = 'spinIn 0.45s cubic-bezier(0.25, 1, 0.5, 1) forwards';
-                
+
                 // Toggle active image variable state
                 isImg1Active = !isImg1Active;
             };
@@ -1692,12 +1677,12 @@
             const imageContainer = document.querySelector('.hero-image-container');
             let touchStartX = 0;
             let touchEndX = 0;
-            
+
             if (imageContainer) {
                 imageContainer.addEventListener('touchstart', (e) => {
                     touchStartX = e.changedTouches[0].screenX;
                 }, { passive: true });
-                
+
                 imageContainer.addEventListener('touchend', (e) => {
                     touchEndX = e.changedTouches[0].screenX;
                     const swipeThreshold = 50; // trigger after 50px delta
@@ -1716,4 +1701,5 @@
         });
     </script>
 </body>
+
 </html>
