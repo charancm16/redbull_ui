@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Cards</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700');
+        @import url('https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto Slab', serif;
+            min-height: 100vh;
+            background: #D2DBDD;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 32px;
+        }
+
+        .cards {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
+            box-shadow: 0 13px 10px -7px rgba(0, 0, 0, .1);
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 30px 18px -8px rgba(0, 0, 0, .15);
+        }
+
+        .card__img {
+            visibility: hidden;
+            width: 100%;
+            height: 235px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card__img--hover {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 235px;
+            background-size: cover;
+            background-position: center;
+            transition: .3s ease;
+        }
+
+        .card__info-hover {
+            display: none;
+        }
+
+        .card:hover .card__img--hover {
+            height: 100%;
+            opacity: .3;
+        }
+
+        .card:hover .card__info {
+            background: transparent;
+        }
+
+        .card__info {
+            padding: 20px 24px 26px;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card__category {
+            font-family: 'Raleway', sans-serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #868686;
+        }
+
+        .card__title {
+            margin: 10px 0 12px;
+            line-height: 1.4;
+        }
+
+        .card__by {
+            font-size: 12px;
+            font-family: 'Raleway', sans-serif;
+            display: block;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .card__author {
+            color: #AD7D52;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .card--1 .card__img,
+        .card--1 .card__img--hover {
+            background-image: url('https://images.pexels.com/photos/45202/brownie-dessert-cake-sweet-45202.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        }
+
+        .card--2 .card__img,
+        .card--2 .card__img--hover {
+            background-image: url('https://images.pexels.com/photos/307008/pexels-photo-307008.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        }
+
+        .card--3 .card__img,
+        .card--3 .card__img--hover {
+            background-image: url('https://images.pexels.com/photos/461382/pexels-photo-461382.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        }
+
+        .card--4 .card__img,
+        .card--4 .card__img--hover {
+            background-image: url('https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        }
+
+        .card--5 .card__img,
+        .card--5 .card__img--hover {
+            background-image: url('https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        }
+
+        .card--6 .card__img,
+        .card--6 .card__img--hover {
+            background-image: url('https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        }
+
+        .card--7 .card__img,
+        .card--7 .card__img--hover {
+            background-image: url('https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        }
+
+        .card--8 .card__img,
+        .card--8 .card__img--hover {
+            background-image: url('https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');
+        }
+
+        @media (max-width: 768px) {
+            .cards {
+                padding: 12px;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+
+            .cards {
+                padding: 8px;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="cards">
+
+        <article class="card card--1">
+            <div class="card__img"></div>
+            <a href="#">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category">Badminton</span>
+                <h3 class="card__title">Lakshya Sen</h3>
+                <span class="card__by">Fast and focused badminton player.</span>
+            </div>
+        </article>
+
+        <article class="card card--2">
+            <div class="card__img"></div>
+            <a href="#">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category">Gaming</span>
+                <h3 class="card__title">Techno Gamerz</h3>
+                <span class="card__by">Popular creator known for gaming content.</span>
+            </div>
+        </article>
+
+        <article class="card card--3">
+            <div class="card__img"></div>
+            <a href="#">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category">Hockey</span>
+                <h3 class="card__title">Manpreet Singh</h3>
+                <span class="card__by">Experienced leader in Indian hockey.</span>
+            </div>
+        </article>
+
+        <article class="card card--4">
+            <div class="card__img"></div>
+            <a href="#">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category">eSports</span>
+                <h3 class="card__title">Ankit Panth</h3>
+                <span class="card__by">Skilled player in competitive esports.</span>
+            </div>
+        </article>
+
+        <article class="card card--5">
+            <div class="card__img"></div>
+            <a href="#">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category">Cricket</span>
+                <h3 class="card__title">KL Rahul</h3>
+                <span class="card__by">Elegant batter with great match control.</span>
+            </div>
+        </article>
+
+        <article class="card card--6">
+            <div class="card__img"></div>
+            <a href="#">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category">Gaming</span>
+                <h3 class="card__title">Jonathan Amaral</h3>
+                <span class="card__by">Well-known gamer in the esports scene.</span>
+            </div>
+        </article>
+
+        <article class="card card--7">
+            <div class="card__img"></div>
+            <a href="#">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category">Rally Raid</span>
+                <h3 class="card__title">Harith Noah</h3>
+                <span class="card__by">Rising racer in rally raid competitions.</span>
+            </div>
+        </article>
+
+        <article class="card card--8">
+            <div class="card__img"></div>
+            <a href="#">
+                <div class="card__img--hover"></div>
+            </a>
+            <div class="card__info">
+                <span class="card__category">Cricket</span>
+                <h3 class="card__title">Riyan Parag</h3>
+                <span class="card__by">Young all-rounder with strong potential.</span>
+            </div>
+        </article>
+
+    </section>
+
+</body>
+
+</html>
